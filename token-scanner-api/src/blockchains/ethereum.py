@@ -123,7 +123,7 @@ class TokenIndexer:
         try:
             for log in logs:
                 processed_logs[log['transactionHash']] = {}
-                processed_logs[log['transactionHash']]['blockNumber'] = log['blockNumber']
+                processed_logs[log['transactionHash']]['blockNumber'] = convert_hex_to_int(log['blockNumber'])
                 processed_logs[log['transactionHash']]['from'] = '0x' + log['topics'][1][26:]
                 processed_logs[log['transactionHash']]['to'] = '0x' + log['topics'][2][26:]
                 processed_logs[log['transactionHash']]['amount'] = float(Decimal(convert_hex_to_int(log['data'])) * self.decimal)
