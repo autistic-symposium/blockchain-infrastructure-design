@@ -2,7 +2,7 @@
 
 <br>
 
-##### 👉 this project implements a cli tool that indexes transfer events for a particular token, and is deployed to a restful api for fast balance and ownership statistics retrieval. 
+##### 👉 this project implements a cli tool that indexes transfer events for a particular token, and is deployed to a restful api for fast balance and ownership statistics retrieval. it utilizes the [JSON-RPC methods](https://docs.infura.io/infura/networks/ethereum/json-rpc-methods/eth_getlogs) `eth_blockNumber` and `eth_getLogs`.
 
 ##### 📚 more details can be found in my mirror post, **[quant #3: building a scalable event scanner for ethereum](https://mirror.xyz/steinkirch.eth/vSF18xcLyfXLIWwxjreRa3I_XskwgnjSc6pScegNJWI)**.
 
