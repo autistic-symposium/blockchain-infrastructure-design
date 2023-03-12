@@ -2,7 +2,7 @@
 
 <br>
 
-##### 👉 this project implements a cli tool that indexes transfer events for a particular token, and is deployed to a restful api for fast balance and ownership statistics retrieval. this is the first step for training machine learning models on the chains (*e.g.*, high-frequency trading with deep learning).
+##### 👉 this project implements a cli tool that indexes transfer events for a particular token, and is deployed to a restful api for fast balance and ownership statistics retrieval. 
 
 ##### 📚 more details can be found in my mirror post, **[quant #3: building a scalable event scanner for ethereum](https://mirror.xyz/steinkirch.eth/vSF18xcLyfXLIWwxjreRa3I_XskwgnjSc6pScegNJWI)**.
 
