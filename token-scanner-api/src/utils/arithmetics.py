@@ -28,3 +28,9 @@ def wei_to_eth(num) -> float:
     """Convert wei to eth."""
     
     return num / float(1000000000000000000)
+
+
+def convert_hex_to_int(hex_string: str) -> int:
+    """Convert a hex string to an integer"""
+
+    return int(hex_string, 16)

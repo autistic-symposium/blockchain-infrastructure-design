@@ -6,6 +6,7 @@ import os
 import sys
 import json
 import logging
+import requests
 from pathlib import Path
 from dotenv import load_dotenv
 from datetime import datetime
@@ -43,7 +44,6 @@ def load_config() -> dict:
         env_vars['TOKEN_CONTRACT'] = os.getenv("TOKEN_CONTRACT")
         env_vars['TOKEN_CONTRACT_ABI'] = os.getenv("TOKEN_CONTRACT_ABI")
         env_vars['MAX_RETRIES'] = os.getenv("MAX_RETRIES")           
-        env_vars['RETRIES_TIMEOUT'] = os.getenv("RETRIES_TIMEOUT")   
         env_vars['SIZE_CHUNK_NEXT'] = os.getenv("SIZE_CHUNK_NEXT")           
         env_vars['OUTPUT_DIR'] = os.getenv("OUTPUT_DIR") 
         set_logging(os.getenv("LOG_LEVEL"))
@@ -136,3 +136,22 @@ def create_result_file(prefix) -> str:
 
     this_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     return f'{prefix}_{this_time}.json'
+
+
+def send_rpc_request(url, method, params=None) -> dict:
+    """Send a JSON-RPC request to a given URL"""
+    
+    params = params or []
+    data = {'jsonrpc': '2.0', 'method': method, 'params': params, 'id': 1}
+
+    try:
+        response = requests.post(url, headers={'Content-Type': 'application/json'}, json=data)
+        if 'result' in response.json():
+            return response.json()['result']
+        else:
+            log_error('Query failed: {}.'.format(response.json()['error']))
+
+    except requests.exceptions.HTTPError  as e:
+        log_error('Error querying to {0}: {1}'.format(url, e.response.text))    
+
+    return {}
