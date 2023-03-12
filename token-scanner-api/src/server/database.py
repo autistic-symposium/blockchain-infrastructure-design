@@ -44,9 +44,7 @@ async def retrieve_top_balances(top_number: int, env_vars: dict) -> list:
     """Retrieve top balances from the database."""
 
     collection = _get_db_collection(env_vars)
-    # todo: need to sort? how to optimzie to not return all?
-    # something like for post in posts.find({"date": {"$lt": d}}).sort("author"):
-    top_balances = collection.find()
+    top_balances = collection.find().sort({"balance": {"$lt": top_number}}, pymongo.DESCENDING)
 
     result = []
     counter = 0
