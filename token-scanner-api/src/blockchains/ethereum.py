@@ -79,15 +79,6 @@ class TokenIndexer:
     ###########################################
     #     Private methods: logic              #
     ###########################################
-
-    def _get_block_timestamp(self, block_number) -> int:
-        """Get the timestamp of a given block."""
-
-        try:
-            block_timestamp = self.web3.eth.getBlock(block_number)['timestamp']
-            return datetime.datetime.utcfromtimestamp(block_timestamp)
-        except (BlockNotFound, ValueError):
-            return None
         
     def _get_logs(self, from_block: int, to_block: int) -> list:
         """Get logs from a given address between two blocks,"""
@@ -127,7 +118,6 @@ class TokenIndexer:
                 processed_logs[log['transactionHash']]['from'] = '0x' + log['topics'][1][26:]
                 processed_logs[log['transactionHash']]['to'] = '0x' + log['topics'][2][26:]
                 processed_logs[log['transactionHash']]['amount'] = float(Decimal(convert_hex_to_int(log['data'])) * self.decimal)
-                processed_logs[log['transactionHash']]['timestamp'] = self._get_block_timestamp(convert_hex_to_int(log['blockNumber']))
         except KeyError as e:
             print(f'Error processing logs: {e}')
             
@@ -137,6 +127,15 @@ class TokenIndexer:
     ###########################
     #   Public methods        #
     ###########################
+
+    def get_block_timestamp(self, block_number) -> int:
+        """Get the timestamp of a given block."""
+
+        try:
+            block_timestamp = self.web3.eth.getBlock(block_number)['timestamp']
+            return datetime.datetime.utcfromtimestamp(block_timestamp)
+        except (BlockNotFound, ValueError):
+            return None
 
     def get_transfer_logs_chunks(self, from_block=None, to_block=None) -> list:
         """Get transfer logs from a given address between two blocks by small chunks"""
