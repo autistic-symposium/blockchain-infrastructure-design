@@ -14,14 +14,12 @@ def process_balances(filepath) -> list:
     data = os_utils.open_json(filepath)
     balances = collections.defaultdict(Decimal)
 
-    for _, block_data in data.items():
-        for _, tx_data in block_data.items():
-            for _, event_data in tx_data.items():
-                balances[event_data["from"]] -= Decimal(event_data["value"])
-                balances[event_data["to"]] += Decimal(event_data["value"])
+    for _tx, event_data in data.items():
+        balances[event_data["from"]] -= Decimal(event_data["amount"])
+        balances[event_data["to"]] += Decimal(event_data["amount"])
 
 
-    balances = {key: float(value) for key, value in balances.items() if value >= Decimal('0')}
+    balances = {key: float(value) for key, value in balances.items() if value > Decimal('0')}
     return dict(sorted(balances.items(), key=lambda x: x[1]))
 
 
