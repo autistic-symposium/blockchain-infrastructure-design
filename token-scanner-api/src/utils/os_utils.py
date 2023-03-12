@@ -47,6 +47,9 @@ def load_config() -> dict:
         env_vars['SIZE_CHUNK_NEXT'] = os.getenv("SIZE_CHUNK_NEXT")           
         env_vars['OUTPUT_DIR'] = os.getenv("OUTPUT_DIR") 
         env_vars['TOKEN_DECIMALS'] = os.getenv("TOKEN_DECIMALS")
+        env_vars['MONGODB_URI'] = os.getenv("MONGODB_URI")
+        env_vars['MONGODB_DB_NAME'] = os.getenv("MONGODB_DB_NAME") 
+        env_vars['MONGODB_COLLECTION_NAME'] = os.getenv("MONGODB_COLLECTION_NAME")       
         set_logging(os.getenv("LOG_LEVEL"))
         return env_vars
 

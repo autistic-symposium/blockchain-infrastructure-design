@@ -6,7 +6,8 @@
 import uvicorn
 import argparse
 
-from src.utils.db_utils import populate_db
+from src.utils.os_utils import load_config
+from src.utils.db_processing import populate_db
 from src.blockchains.ethereum import TokenIndexer
 from src.utils.vercel_utils import upload_to_vercel
 from src.utils.test_api import fetch_token_balance as f 
@@ -24,7 +25,7 @@ def run_menu() -> argparse.ArgumentParser:
                         help="Process historical transfer events data. \
                         Example: indexer -p <json data file>")
     parser.add_argument('-d', dest='db', nargs=1,
-                        help="Populate db with processed event data. \
+                        help="Populate local db with processed event data. \
                         Example: indexer -d <json data file>")
 
     parser.add_argument('-a', dest='api', action='store_true',
@@ -49,6 +50,7 @@ def run_menu() -> argparse.ArgumentParser:
 def run() -> None:
     """Entry point for this module."""
 
+    load_config()
     parser = run_menu()
     args = parser.parse_args()
 

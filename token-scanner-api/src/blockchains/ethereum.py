@@ -85,7 +85,7 @@ class TokenIndexer:
 
         try:
             block_timestamp = self.web3.eth.getBlock(block_number)['timestamp']
-            return int(datetime.datetime.utcfromtimestamp(block_timestamp))
+            return datetime.datetime.utcfromtimestamp(block_timestamp)
         except (BlockNotFound, ValueError):
             return None
         
@@ -122,11 +122,15 @@ class TokenIndexer:
 
         try:
             for log in logs:
+                print(log)
+                import sys
+                sys.exit()
                 processed_logs[log['transactionHash']] = {}
                 processed_logs[log['transactionHash']]['blockNumber'] = convert_hex_to_int(log['blockNumber'])
                 processed_logs[log['transactionHash']]['from'] = '0x' + log['topics'][1][26:]
                 processed_logs[log['transactionHash']]['to'] = '0x' + log['topics'][2][26:]
                 processed_logs[log['transactionHash']]['amount'] = float(Decimal(convert_hex_to_int(log['data'])) * self.decimal)
+                processed_logs[log['transactionHash']]['timestamp'] = self._get_block_timestamp(convert_hex_to_int(log['blockNumber']))
         except KeyError as e:
             print(f'Error processing logs: {e}')
             
