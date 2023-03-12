@@ -2,7 +2,7 @@
 
 <br>
 
-##### scalable event scanners and infrastructure for on-chain analysis and machine learning models training.
+#### 👉 scalable event scanners and infrastructure for on-chain analysis and machine learning models training.
 
 
 <br>
