@@ -1,4 +1,4 @@
-# ⛓🛠 blockchain data engineering
+## ⛓🛠 blockchain data engineering
 
 <br>
 
@@ -7,7 +7,10 @@
 
 <br>
 
-## infrastructure
+### infrastructure
+
+<br>
+
 
 
 * **[💎 token-scanner-api](token-scanner-api)**:
@@ -19,7 +22,7 @@
 
 ---
 
-## resources
+### resources
 
 <br>
 
