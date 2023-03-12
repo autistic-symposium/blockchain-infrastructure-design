@@ -95,6 +95,7 @@ def save_output(destination, data, mode="w") -> None:
     try:
         with open(destination, mode, encoding='utf-8') as outfile:
             json.dump(data, outfile, indent=4)
+            log_info(f'Results were saved at {destination}.')
 
     except (IOError, TypeError) as e:
         log_error(f'Could not save {destination}: {e}')

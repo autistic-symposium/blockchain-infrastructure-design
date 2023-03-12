@@ -56,7 +56,18 @@ make install
 ```
 indexer -h
 
+🪙 Token indexer and API.
 
+optional arguments:
+  -h, --help  show this help message and exit
+  -e          Retrieve historical transfer events data on Ethereum. Example: indexer -e
+  -p PROCESS  Process historical transfer events data. Example: indexer -p <json data file>
+  -d DB       Populate db with processed event data. Example: indexer -d <json data file>
+  -a          Run the event scanner api locally. Example: indexer -a
+  -c          Deploy event scanner to Vercel. Example: indexer -c
+  -b BALANCE  Fetch token balance for a given wallet. Example: indexer -b <wallet address>
+  -t TOP      Fetch top token holders. Example: indexer -t <number of holders>
+  -g CHANGE   Fetch weekly balance change for a given wallet. Example: indexer -g <wallet address>
 ```
 
 

@@ -126,7 +126,7 @@ class TokenIndexer:
                 processed_logs[log['transactionHash']]['blockNumber'] = log['blockNumber']
                 processed_logs[log['transactionHash']]['from'] = '0x' + log['topics'][1][26:]
                 processed_logs[log['transactionHash']]['to'] = '0x' + log['topics'][2][26:]
-                processed_logs[log['transactionHash']]['amount'] = Decimal(convert_hex_to_int(log['data'])) * self.decimal
+                processed_logs[log['transactionHash']]['amount'] = float(Decimal(convert_hex_to_int(log['data'])) * self.decimal)
         except KeyError as e:
             print(f'Error processing logs: {e}')
             
@@ -141,7 +141,7 @@ class TokenIndexer:
         """Get transfer logs from a given address between two blocks by small chunks"""
         
         logs = []
-        from_block = from_block or 1
+        from_block = 16780001#from_block or 1
         to_block = to_block or self._get_last_block_number()
 
         log_info(f'Indexing transfer events between blocks {from_block} and {to_block}...')
@@ -168,7 +168,7 @@ class TokenIndexer:
         self.get_transfer_logs_chunks()
 
         delta_time = time.time() - start_time
-        log_info(f'{len(self.result_data)} transfer events were indexed on {delta_time} seconds.')
+        log_info(f'{len(self.result_data)} transfer events were indexed on {round(delta_time, 3)} seconds.')
 
         save_output(self.result_filepath, self.result_data)
-        log_info(f'Results were saved at {self.result_filepath}.')
+
