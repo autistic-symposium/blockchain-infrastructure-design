@@ -12,15 +12,15 @@ from web3.exceptions import BlockNotFound
 from web3.providers.rpc import HTTPProvider
 
 from src.utils.arithmetics import convert_hex_to_int
-from src.utils.os_utils import send_rpc_request, exit_with_error, create_result_file, \
-                               set_output, open_json, load_config, save_output, log_info
+from src.utils.os_utils import send_rpc_request, exit_with_error, log_info, \
+                               set_output, open_json, save_output, create_result_file
 
 
 class TokenIndexer:
     
-    def __init__(self):
+    def __init__(self, env_vars):
 
-        self.env_vars = load_config()
+        self.env_vars = env_vars
         self.web3 = self._set_web3_object()
 
         # contract parameters

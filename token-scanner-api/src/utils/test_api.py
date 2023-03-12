@@ -1,8 +1,32 @@
-def fetch_token_balance():
-    pass
+# -*- encoding: utf-8 -*-
+# utils/test_api.py
+# This class implements the tests for the API.
 
-def fetch_top_token_holders():
-    pass
+import os_utils
 
-def fetch_change():
-    pass
+
+def fetch_token_balance(env_vars, wallet):
+    """Test the fetch_token_balance function."""
+    
+    url = os_utils.format_url(f"{env_vars['API_HOST_URL']}:{env_vars['API_HOST_PORT']}", \
+                              f"/balance/{wallet}")
+    response = os_utils.send_get_request(url)
+    os_utils.log_info(response)
+
+
+def fetch_top_token_holders(env_vars, top_number):
+    """Test the fetch_top_token_holders function."""
+
+    url = os_utils.format_url(f"{env_vars['API_HOST_URL']}:{env_vars['API_HOST_PORT']}", \
+                              "top")
+    response = os_utils.send_get_request(url)
+    os_utils.log_info(response)
+
+
+def fetch_change(env_vars, wallet):
+    """Test the fetch_change function."""
+
+    url = os_utils.format_url(f"{env_vars['API_HOST_URL']}:{env_vars['API_HOST_PORT']}", \
+                              f"/weekly/{wallet}")
+    response = os_utils.send_get_request(url)
+    os_utils.log_info(response)

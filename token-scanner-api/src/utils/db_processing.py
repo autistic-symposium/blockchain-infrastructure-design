@@ -18,12 +18,11 @@ def format_and_load_data(filepath):
     return result
 
 
-def populate_db(filepath):
+def run_db_processing(filepath, env_vars):
 
     #################################
     # Connect to database via client
     #################################
-    env_vars = os_utils.load_config()
     url = env_vars['MONGODB_URL']
     db_name = env_vars['MONGODB_DB_NAME']
     collection = env_vars['MONGODB_COLLECTION_NAME']

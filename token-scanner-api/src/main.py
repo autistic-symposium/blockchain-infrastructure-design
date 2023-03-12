@@ -7,9 +7,9 @@ import uvicorn
 import argparse
 
 from src.utils.os_utils import load_config
-from src.utils.db_processing import populate_db
 from src.blockchains.ethereum import TokenIndexer
 from src.utils.vercel_utils import upload_to_vercel
+from src.utils.db_processing import run_db_processing
 from src.utils.test_api import fetch_token_balance as f 
 from src.utils.data_processing import run_data_processing
 
@@ -50,7 +50,7 @@ def run_menu() -> argparse.ArgumentParser:
 def run() -> None:
     """Entry point for this module."""
 
-    load_config()
+    env_vars = load_config()
     parser = run_menu()
     args = parser.parse_args()
 
@@ -58,18 +58,21 @@ def run() -> None:
     # Run historical data indexer
     #############################
     if args.indexer:
-      indexer = TokenIndexer()
+      indexer = TokenIndexer(env_vars)
       indexer.run()
     elif args.process:
       run_data_processing(args.process[0])
     elif args.db:
-      populate_db(args.db[0])
+      run_db_processing(args.db[0], env_vars)
 
     #############################
     # Run deployment tools
     #############################
     elif args.api:
-      uvicorn.run("src.server.api:app", host="0.0.0.0", port=8000, reload=True)
+      uvicorn.run("src.server.api:app", \
+                  host=env_vars['API_HOST_URL'], \
+                  port=env_vars['API_HOST_PORT'], \
+                  reload=True)
     elif args.vercel:
       upload_to_vercel()
 
@@ -77,12 +80,11 @@ def run() -> None:
     # Run api tests
     #############################
     elif args.balance:
-      f.fetch_token_balance(args.balance[0])
+      f.fetch_token_balance(env_vars, args.balance[0])
     elif args.top:
-      f.fetch_top_holders(args.top[0])
+      f.fetch_top_holders(env_vars, args.top[0])
     elif args.change:
-      f.fetch_change(args.change[0])
-
+      f.fetch_change(env_vars, args.change[0])
 
     else:
       parser.print_help()

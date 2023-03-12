@@ -11,10 +11,9 @@ from src.utils import os_utils
 #     Private methods: database            #
 ############################################
 
-def _get_db_collection():
+def _get_db_collection(env_vars):
     """Connect to the database."""
 
-    env_vars = os_utils.load_config()
     url = env_vars['MONGODB_URL']
     db_name = env_vars['MONGODB_DB_NAME']
     collection = env_vars['MONGODB_COLLECTION_NAME']
@@ -41,10 +40,10 @@ def _balancer_helper(item) -> dict:
 #     Public methods: database             #
 ############################################
 
-async def retrieve_top_balances(top_number: int) -> list:
+async def retrieve_top_balances(top_number: int, env_vars: dict) -> list:
     """Retrieve top balances from the database."""
 
-    collection = _get_db_collection()
+    collection = _get_db_collection(env_vars)
     top_balances = collection.find()
 
     result = []
@@ -59,10 +58,10 @@ async def retrieve_top_balances(top_number: int) -> list:
     return result
 
 
-async def retrieve_balance(wallet: str) -> dict:
+async def retrieve_balance(wallet: str, env_vars: dict) -> dict:
     """Retrieve balance from the database."""
 
-    collection = _get_db_collection()
+    collection = _get_db_collection(env_vars)
     balance = collection.find_one({"wallet": wallet})
 
     if balance:
@@ -71,9 +70,9 @@ async def retrieve_balance(wallet: str) -> dict:
         return {}
 
 
-async def retrieve_holder_weekly_change(address: str) -> int:
+async def retrieve_holder_weekly_change(address: str, env_vars: dict) -> int:
     """Retrieve weekly change of a given address."""
 
-    collection = _get_db_collection()
+    collection = _get_db_collection(env_vars)
     # todo
     pass
