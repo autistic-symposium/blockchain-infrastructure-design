@@ -122,9 +122,6 @@ class TokenIndexer:
 
         try:
             for log in logs:
-                print(log)
-                import sys
-                sys.exit()
                 processed_logs[log['transactionHash']] = {}
                 processed_logs[log['transactionHash']]['blockNumber'] = convert_hex_to_int(log['blockNumber'])
                 processed_logs[log['transactionHash']]['from'] = '0x' + log['topics'][1][26:]

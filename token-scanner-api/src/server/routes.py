@@ -1,19 +1,11 @@
+# -*- encoding: utf-8 -*-
+# server/routes.py
+# This class implements the routes for the API.
+
 import asyncio
-import ethereum as APIEth
-from fastapi import APIRouter, Body
-from fastapi.encoders import jsonable_encoder
+from fastapi import APIRouter
 
-
-from database import (
-    retrieve_students,
-    retrieve_student,
-)
-from models import (
-    WalletsSchema,
-    ResponseModel,
-    ErrorResponseModel,
-)
-
+from database import retrieve_balance, retrieve_top_balances, retrieve_holder_weekly_change
 
 
 router = APIRouter()
@@ -21,9 +13,9 @@ router = APIRouter()
 
 @router.get("/")
 async def get_notes() -> dict:
-
+    """Get a message to check server status."""
     return {
-        "message": "server is up and running!"
+        "message": "🪙 Token indexer server is up and running!"
     }
 
 
@@ -31,16 +23,19 @@ async def get_notes() -> dict:
 async def get_token_balance(address: str) -> dict:
     """Get a token balance for a given address."""
 
-    futures = [retrieve_student(address)]
+    futures = [retrieve_balance(address)]
     result = await asyncio.gather(*futures)
-    return {"result": result}
+    if result:
+        return {"result": result}
+    else:
+        return {"error": "wallet not found"}
 
 
 @router.get("/top")
 async def get_top_holders() -> dict:
     """Get top holders of a given token."""
 
-    futures = [retrieve_students()]
+    futures = [retrieve_top_balances()]
     result = await asyncio.gather(*futures)
     if result:
         return {"top_holders": result}
@@ -52,10 +47,9 @@ async def get_top_holders() -> dict:
 async def get_holder_weekly_change(address: str) -> dict:
     """Get weekly change of a given address."""
 
-    futures = [APIEth.fetch_weekly_balance_change_by_address(address)]
+    futures = [retrieve_holder_weekly_change(address)]
     result = await asyncio.gather(*futures)
-    print(result)
-    return {"result": result}
-
-
-
+    if result:
+        return {"result": result}
+    else:
+        return {"error": "wallet not found"}

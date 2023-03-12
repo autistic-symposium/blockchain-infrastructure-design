@@ -1,10 +1,12 @@
-import motor.motor_asyncio
-import json
-MONGO_DETAILS = "mongodb://localhost:27017"
+# -*- encoding: utf-8 -*-
+# server/database.py
+# This class implements the database connection.
 
-#client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
 
 from pymongo import MongoClient
+
+
+
 
 client = MongoClient(MONGO_DETAILS)
 
@@ -46,7 +48,13 @@ def balancer_helper(item) -> dict:
 
 
 # Retrieve a student with a matching ID
-async def retrieve_student(wallet: str) -> dict:
-    student = collection.find_one({"wallet": wallet})
-    if student:
-        return balancer_helper(student)
+async def retrieve_balance(wallet: str) -> dict:
+    balance = collection.find_one({"wallet": wallet})
+    if balance:
+        return balancer_helper(balance)
+
+async def retrieve_top_balances():
+    pass
+
+async def retrieve_holder_weekly_change(address: str):
+    pass
