@@ -145,6 +145,7 @@ def send_rpc_request(url, method, params=None) -> dict:
     
     params = params or []
     data = {'jsonrpc': '2.0', 'method': method, 'params': params, 'id': 1}
+    log_debug(f'Querying {url} with {data}')
 
     try:
         response = requests.post(url, headers={'Content-Type': 'application/json'}, json=data)
