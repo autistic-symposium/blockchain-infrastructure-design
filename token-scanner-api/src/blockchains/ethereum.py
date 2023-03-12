@@ -141,7 +141,7 @@ class TokenIndexer:
         """Get transfer logs from a given address between two blocks by small chunks"""
         
         logs = []
-        from_block = 16780001#from_block or 1
+        from_block = from_block or 1
         to_block = to_block or self._get_last_block_number()
 
         log_info(f'Indexing transfer events between blocks {from_block} and {to_block}...')
