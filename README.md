@@ -23,4 +23,4 @@
 
 <br>
 
-* [go-outside-labs orchestration-toolkit](https://github.com/go-outside-labs/orchestration-toolkit)
+* **[go-outside-labs orchestration-toolkit](https://github.com/go-outside-labs/orchestration-toolkit)**
