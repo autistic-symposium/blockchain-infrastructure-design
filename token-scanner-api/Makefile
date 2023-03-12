@@ -20,7 +20,3 @@ install_deps:
 .PHONY: lint
 lint:
 	tox -e lint
-
-.PHONY: local_server
-local_server:
-	indexer -a
