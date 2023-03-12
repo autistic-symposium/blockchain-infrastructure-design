@@ -2,7 +2,7 @@
 
 <br>
 
-##### 👉 this repository contains blockchain engineering projects such as scalable event scanners and infrastructure setups for on-chain analysis and machine learning models training (*e.g.*, high-frequency trading with deep learning).
+##### 👉 this repository contains my blockchain engineering projects such as scalable event scanners and infrastructure setups for on-chain analysis and machine learning models training (*e.g.*, high-frequency trading with deep learning).
 
 ##### 🛠 here is a high-level system design chart for a possible blockchain intelligence data platform (all deployed in kubernetes):
 
@@ -28,7 +28,7 @@
 
 ---
 
-### resources
+### external resources
 
 <br>
 
