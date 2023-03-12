@@ -6,6 +6,8 @@ import time
 import datetime
 
 from web3 import Web3
+from decimal import Decimal
+from collections import defaultdict
 from web3.exceptions import BlockNotFound
 from web3.providers.rpc import HTTPProvider
 
@@ -30,6 +32,7 @@ class TokenIndexer:
         self.provider_url = self.env_vars['RPC_PROVIDER_URL']
         self.max_retries = int(self.env_vars['MAX_RETRIES'])
         self.size_chunks_next = int(self.env_vars['SIZE_CHUNK_NEXT'])
+        self.decimal = self._set_decimal()
 
         # results parameters
         self.result_data = {}
@@ -47,6 +50,10 @@ class TokenIndexer:
         rpc_provider.middlewares.clear()
         return Web3(rpc_provider)
     
+    def _set_decimal(self) -> None:
+        """Set token contracts decimal."""
+
+        return Decimal('10') ** Decimal(f'-{self.env_vars["TOKEN_DECIMALS"]}')
 
     def _is_connected(self) -> bool:
         """Check if the node is connected to the network."""
@@ -107,6 +114,23 @@ class TokenIndexer:
         method = 'eth_blockNumber'
         return convert_hex_to_int(send_rpc_request(self.provider_url, method))
 
+    def _process_logs(self, logs: list) -> dict:
+        """Process the logs and return a dictionary with the results."""
+        
+        processed_logs =  defaultdict()
+
+        try:
+            for log in logs:
+                processed_logs[log['transactionHash']] = {}
+                processed_logs[log['transactionHash']]['blockNumber'] = log['blockNumber']
+                processed_logs[log['transactionHash']]['from'] = '0x' + log['topics'][1][26:]
+                processed_logs[log['transactionHash']]['to'] = '0x' + log['topics'][2][26:]
+                processed_logs[log['transactionHash']]['amount'] = Decimal(convert_hex_to_int(log['data'])) * self.decimal
+        except KeyError as e:
+            print(f'Error processing logs: {e}')
+            
+        return processed_logs
+
 
     ###########################
     #   Public methods        #
@@ -134,7 +158,7 @@ class TokenIndexer:
                 except Exception:
                     attempt += 1
         
-        self.result_data = logs
+        self.result_data = self._process_logs(logs)
 
     def run(self):
         """Run the indexer."""

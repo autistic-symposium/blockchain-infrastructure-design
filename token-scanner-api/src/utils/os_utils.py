@@ -46,6 +46,7 @@ def load_config() -> dict:
         env_vars['MAX_RETRIES'] = os.getenv("MAX_RETRIES")           
         env_vars['SIZE_CHUNK_NEXT'] = os.getenv("SIZE_CHUNK_NEXT")           
         env_vars['OUTPUT_DIR'] = os.getenv("OUTPUT_DIR") 
+        env_vars['TOKEN_DECIMALS'] = os.getenv("TOKEN_DECIMALS")
         set_logging(os.getenv("LOG_LEVEL"))
         return env_vars
 
