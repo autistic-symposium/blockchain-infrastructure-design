@@ -33,3 +33,4 @@
 <br>
 
 * **[go-outside-labs orchestration-toolkit](https://github.com/go-outside-labs/orchestration-toolkit)**
+* **[google biquery article on blockchain public datasets](https://cloud.google.com/blog/products/data-analytics/introducing-six-new-cryptocurrencies-in-bigquery-public-datasets-and-how-to-analyze-them)**

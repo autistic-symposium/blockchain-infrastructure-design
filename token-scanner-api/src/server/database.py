@@ -44,7 +44,7 @@ async def retrieve_top_balances(top_number: int, env_vars: dict) -> list:
     """Retrieve top balances from the database."""
 
     collection = _get_db_collection(env_vars)
-    top_balances = collection.find().sort({"balance": {"$lt": top_number}}, pymongo.DESCENDING)
+    top_balances = collection.find().sort({"balance"}, pymongo.DESCENDING).limit(top_number)
 
     result = []
     counter = 0
