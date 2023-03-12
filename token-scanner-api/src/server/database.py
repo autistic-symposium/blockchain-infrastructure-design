@@ -4,12 +4,7 @@
 
 
 import pymongo 
-
-
-env_vars = os_utils.load_config()
-url = env_vars['MONGODB_URL']
-db_name = env_vars['MONGODB_DB_NAME']
-collection = env_vars['MONGODB_COLLECTION_NAME']
+from src.utils import os_utils
 
 
 ############################################
@@ -19,8 +14,13 @@ collection = env_vars['MONGODB_COLLECTION_NAME']
 def _get_db_collection():
     """Connect to the database."""
 
+    env_vars = os_utils.load_config()
+    url = env_vars['MONGODB_URL']
+    db_name = env_vars['MONGODB_DB_NAME']
+    collection = env_vars['MONGODB_COLLECTION_NAME']
+
     client = pymongo.MongoClient(url)
-    database = client.balances
+    database = client[db_name]
     return database[collection]
 
 
