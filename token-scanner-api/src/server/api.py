@@ -18,10 +18,10 @@ db_name = env_vars['MONGODB_DB_NAME']
 
 @app.on_event("startup")
 def startup_db_client():
-    app.mongodb_client = MongoClient(url)
-    app.database = app.mongodb_client[db_name]
+    app.client = MongoClient(url)
+    app.database = app.client[db_name]
     os_utils.log_info("Connected to the MongoDB database!")
 
 @app.on_event("shutdown")
 def shutdown_db_client():
-    app.mongodb_client.close()
+    app.client.close()

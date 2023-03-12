@@ -26,7 +26,7 @@ def populate_db(filepath):
     env_vars = os_utils.load_config()
     url = env_vars['MONGODB_URL']
     db_name = env_vars['MONGODB_DB_NAME']
-    collection_name = env_vars['MONGODB_COLLECTION_NAME']
+    collection = env_vars['MONGODB_COLLECTION_NAME']
     
     client = pymongo.MongoClient(url)
 
@@ -40,7 +40,7 @@ def populate_db(filepath):
         # Create collection for balances
         # (make sure it's empty first)
         ################################
-        wallet_collection = database[collection_name]
+        wallet_collection = database[collection]
         wallet_collection.drop()
 
         ##############################

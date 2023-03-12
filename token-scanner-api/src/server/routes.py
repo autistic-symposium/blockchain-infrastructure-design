@@ -32,10 +32,12 @@ async def get_token_balance(address: str) -> dict:
 
 
 @router.get("/top")
-async def get_top_holders() -> dict:
+async def get_top_holders(top_number=None) -> dict:
     """Get top holders of a given token."""
 
-    futures = [retrieve_top_balances()]
+    top_number = top_number or 10
+
+    futures = [retrieve_top_balances(top_number)]
     result = await asyncio.gather(*futures)
     if result:
         return {"top_holders": result}
