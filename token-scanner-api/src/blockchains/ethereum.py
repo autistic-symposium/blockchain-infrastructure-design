@@ -117,6 +117,7 @@ class TokenIndexer:
     def _process_logs(self, logs: list) -> dict:
         """Process the logs and return a dictionary with the results."""
         
+        log_info(f'Processing {len(logs)} logs...')
         processed_logs =  defaultdict()
 
         try:
