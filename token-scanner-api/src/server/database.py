@@ -44,6 +44,8 @@ async def retrieve_top_balances(top_number: int, env_vars: dict) -> list:
     """Retrieve top balances from the database."""
 
     collection = _get_db_collection(env_vars)
+    # todo: need to sort? how to optimzie to not return all?
+    # something like for post in posts.find({"date": {"$lt": d}}).sort("author"):
     top_balances = collection.find()
 
     result = []
@@ -75,4 +77,10 @@ async def retrieve_holder_weekly_change(address: str, env_vars: dict) -> int:
 
     collection = _get_db_collection(env_vars)
     # todo
+    # get today time
+    # get last week time
+    # find block last week
+    # get balance of address in block last week
+    # get balance of address in block today
+    # calculate difference and percentage
     pass

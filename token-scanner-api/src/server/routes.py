@@ -35,7 +35,7 @@ async def get_token_balance(env_vars: dict, address: str) -> dict:
 async def get_top_holders(env_vars: dict, top_number=None) -> dict:
     """Get top holders of a given token."""
 
-    top_number = top_number or 10
+    top_number = top_number or 100
 
     futures = [retrieve_top_balances(env_vars, top_number)]
     result = await asyncio.gather(*futures)
