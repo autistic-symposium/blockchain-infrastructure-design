@@ -15,7 +15,6 @@ def _get_db_collection():
     """Connect to the database."""
 
     env_vars = os_utils.load_config()
-
     url = env_vars['MONGODB_URL']
     db_name = env_vars['MONGODB_DB_NAME']
     collection = env_vars['MONGODB_COLLECTION_NAME']
@@ -23,12 +22,6 @@ def _get_db_collection():
     client = pymongo.MongoClient(url)
     database = client[db_name]
     return database[collection]
-
-
-def _wallet_helper(item) -> dict:
-    return {
-        "wallet": item["wallet"],
-    }
 
 
 def _balancer_helper(item) -> dict:
@@ -42,23 +35,21 @@ def _balancer_helper(item) -> dict:
 #     Public methods: database             #
 ############################################
 
-async def retrieve_top_balances() -> list:
+async def retrieve_top_balances(top_number=None) -> list:
     """Retrieve top balances from the database."""
 
-    top_number = 100
+    top_number = top_number or 100
     collection = _get_db_collection()
-    top_balances = collection.find()#.sort({"balance"}, pymongo.DESCENDING).limit(top_number)
+    top_balances = collection.find().sort("balance", -1).limit(top_number)
 
     result = []
-    counter = 0
-    
-    for balance in top_balances:
-        result.append(_wallet_helper(balance))
-        if counter > top_number:
-            break
-        counter += 1
+    for item in top_balances:
+        result.append({
+            "wallet": item["wallet"],
+            "balance": item["balance"],
+        })
 
-    return top_balances
+    return result
 
 
 async def retrieve_balance(wallet: str) -> dict:
@@ -71,7 +62,6 @@ async def retrieve_balance(wallet: str) -> dict:
         return _balancer_helper(balance)
     else:
         return {}
-
 
 
 async def retrieve_holder_weekly_change(address: str) -> int:

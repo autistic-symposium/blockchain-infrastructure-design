@@ -27,7 +27,7 @@ async def get_token_balance(address: str) -> dict:
     if result:
         return {"result": result}
     else:
-        return {"error": "wallet not found"}
+        return {"error": "Wallet not found"}
 
 
 @router.get("/top")
@@ -37,14 +37,14 @@ async def get_top_holders() -> dict:
     futures = [retrieve_top_balances()]
     result = await asyncio.gather(*futures)
     if result:
-        return {"result": result}
+        return {"result": result[0]}
     else:
         return {"error": "No holders found"}
 
 
 
 @router.get("/weekly/{address}")
-async def get_holder_weekly_change(env_vars: dict, address: str) -> dict:
+async def get_holder_weekly_change(address: str) -> dict:
     """Get weekly change of a given address."""
 
     futures = [retrieve_holder_weekly_change(address)]
@@ -52,4 +52,4 @@ async def get_holder_weekly_change(env_vars: dict, address: str) -> dict:
     if result:
         return {"result": result}
     else:
-        return {"error": "wallet not found"}
+        return {"error": "Wallet not found"}
