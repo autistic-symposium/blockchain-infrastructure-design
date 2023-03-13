@@ -5,11 +5,11 @@
 import src.utils.os_utils as os_utils
 
 
-def fetch_token_balance(env_vars, wallet):
+def fetch_token_balance(ewallet):
     """Test the fetch_token_balance function."""
     
-    url = os_utils.format_url(f"{env_vars['API_HOST_URL']}:{env_vars['API_HOST_PORT']}", \
-                              f"/balance/{wallet}")
+    endpoint = f"balance/{wallet}"
+    url = f'http://localhost:80/{endpoint}'
     response = os_utils.send_get_request(url)
     os_utils.log_info(response)
 

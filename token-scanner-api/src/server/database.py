@@ -4,15 +4,17 @@
 
 
 import pymongo 
-from src.utils import os_utils
+import src.utils.os_utils as os_utils
 
 
 ############################################
 #     Private methods: database            #
 ############################################
 
-def _get_db_collection(env_vars):
+def _get_db_collection():
     """Connect to the database."""
+
+    env_vars = os_utils.load_config()
 
     url = env_vars['MONGODB_URL']
     db_name = env_vars['MONGODB_DB_NAME']
@@ -40,11 +42,12 @@ def _balancer_helper(item) -> dict:
 #     Public methods: database             #
 ############################################
 
-async def retrieve_top_balances(top_number: int, env_vars: dict) -> list:
+async def retrieve_top_balances() -> list:
     """Retrieve top balances from the database."""
 
-    collection = _get_db_collection(env_vars)
-    top_balances = collection.find().sort({"balance"}, pymongo.DESCENDING).limit(top_number)
+    top_number = 100
+    collection = _get_db_collection()
+    top_balances = collection.find()#.sort({"balance"}, pymongo.DESCENDING).limit(top_number)
 
     result = []
     counter = 0
@@ -55,13 +58,13 @@ async def retrieve_top_balances(top_number: int, env_vars: dict) -> list:
             break
         counter += 1
 
-    return result
+    return top_balances
 
 
-async def retrieve_balance(wallet: str, env_vars: dict) -> dict:
+async def retrieve_balance(wallet: str) -> dict:
     """Retrieve balance from the database."""
 
-    collection = _get_db_collection(env_vars)
+    collection = _get_db_collection()
     balance = collection.find_one({"wallet": wallet})
 
     if balance:
@@ -70,10 +73,11 @@ async def retrieve_balance(wallet: str, env_vars: dict) -> dict:
         return {}
 
 
-async def retrieve_holder_weekly_change(address: str, env_vars: dict) -> int:
+
+async def retrieve_holder_weekly_change(address: str) -> int:
     """Retrieve weekly change of a given address."""
 
-    collection = _get_db_collection(env_vars)
+    collection = _get_db_collection()
     # todo
     # get today time
     # get last week time

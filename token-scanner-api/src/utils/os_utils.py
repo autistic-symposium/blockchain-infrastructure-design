@@ -10,7 +10,6 @@ import requests
 from pathlib import Path
 from dotenv import load_dotenv
 from datetime import datetime
-from urllib.parse import urlparse
 
 
 def set_logging(log_level) -> None:
@@ -94,13 +93,6 @@ def format_path(dir_path, filename) -> str:
 
     return os.path.join(dir_path, filename)
 
-
-def format_url(base_url, endpoint) -> str:
-    """Format a URL full filepath."""
-
-    return urlparse.urljoin(base_url, endpoint)
-
-
 def save_output(destination, data, mode="w") -> None:
     """Save data from memory to a destination in disk."""
 
@@ -168,13 +160,11 @@ def send_post_request(url, headers=None, json=None) -> dict:
     return {}
 
 
-def send_get_request(url, params=None) -> dict:
+def send_get_request(url) -> dict:
     """Send a request to a given URL"""
 
-    params = params or {}
-
     try:
-        response = requests.get(url, params=params)
+        response = requests.get(url)
         return response.json()
 
     except requests.exceptions.HTTPError  as e:

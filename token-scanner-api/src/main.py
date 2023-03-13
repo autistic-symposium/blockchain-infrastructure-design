@@ -39,7 +39,7 @@ def run_menu() -> argparse.ArgumentParser:
     parser.add_argument('-b', dest='balance', nargs=1,
                         help="Fetch token balance for a given wallet. \
                         Example: indexer -b <wallet address>")
-    parser.add_argument('-t', dest='top', nargs=1,
+    parser.add_argument('-t', dest='top', action='store_true',
                         help="Fetch top token holders. \
                         Example: indexer -t <number of holders>")
     parser.add_argument('-g', dest='change', nargs=1,
@@ -82,7 +82,7 @@ def run() -> None:
     elif args.balance:
       fetch_token_balance(env_vars, args.balance[0])
     elif args.top:
-      fetch_top_token_holders(env_vars, args.top[0])
+      fetch_top_token_holders(env_vars)
     elif args.change:
       fetch_change(env_vars, args.change[0])
 

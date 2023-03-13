@@ -7,7 +7,6 @@ from fastapi import APIRouter
 
 from src.server.database import retrieve_balance, retrieve_top_balances, retrieve_holder_weekly_change
 
-
 router = APIRouter()
 
 
@@ -20,10 +19,10 @@ async def get_notes() -> dict:
 
 
 @router.get("/balance/{address}")
-async def get_token_balance(env_vars: dict, address: str) -> dict:
+async def get_token_balance(address: str) -> dict:
     """Get a token balance for a given address."""
 
-    futures = [retrieve_balance(env_vars, address)]
+    futures = [retrieve_balance(address)]
     result = await asyncio.gather(*futures)
     if result:
         return {"result": result}
@@ -32,24 +31,23 @@ async def get_token_balance(env_vars: dict, address: str) -> dict:
 
 
 @router.get("/top")
-async def get_top_holders(env_vars: dict, top_number=None) -> dict:
+async def get_top_holders() -> dict:
     """Get top holders of a given token."""
 
-    top_number = top_number or 100
-
-    futures = [retrieve_top_balances(env_vars, top_number)]
+    futures = [retrieve_top_balances()]
     result = await asyncio.gather(*futures)
     if result:
-        return {"top_holders": result}
+        return {"result": result}
     else:
         return {"error": "No holders found"}
+
 
 
 @router.get("/weekly/{address}")
 async def get_holder_weekly_change(env_vars: dict, address: str) -> dict:
     """Get weekly change of a given address."""
 
-    futures = [retrieve_holder_weekly_change(env_vars, address)]
+    futures = [retrieve_holder_weekly_change(address)]
     result = await asyncio.gather(*futures)
     if result:
         return {"result": result}
