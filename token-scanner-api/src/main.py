@@ -32,9 +32,6 @@ def run_menu() -> argparse.ArgumentParser:
     parser.add_argument('-a', dest='api', action='store_true',
                         help="Run the event scanner api locally. \
                         Example: indexer -a")
-    parser.add_argument('-c', dest='vercel', action='store_true',
-                        help="Deploy event scanner to Vercel. \
-                        Example: indexer -c")
     
     parser.add_argument('-b', dest='balance', nargs=1,
                         help="Fetch token balance for a given wallet. \
@@ -42,9 +39,7 @@ def run_menu() -> argparse.ArgumentParser:
     parser.add_argument('-t', dest='top', action='store_true',
                         help="Fetch top token holders. \
                         Example: indexer -t <number of holders>")
-    parser.add_argument('-g', dest='change', nargs=1,
-                        help="Fetch weekly balance change for a given wallet. \
-                        Example: indexer -g <wallet address>")
+
     return parser
 
 
@@ -73,8 +68,6 @@ def run() -> None:
       host = env_vars['API_HOST_URL']
       port = int(env_vars['API_HOST_PORT'])
       uvicorn.run("src.server.api:app", host=host, port=port, reload=True)
-    elif args.vercel:
-      upload_to_vercel()
 
     #############################
     # Run api tests
@@ -83,8 +76,7 @@ def run() -> None:
       fetch_token_balance(env_vars, args.balance[0])
     elif args.top:
       fetch_top_token_holders(env_vars)
-    elif args.change:
-      fetch_change(env_vars, args.change[0])
+
 
     else:
       parser.print_help()

@@ -63,16 +63,3 @@ async def retrieve_balance(wallet: str) -> dict:
     else:
         return {}
 
-
-async def retrieve_holder_weekly_change(address: str) -> int:
-    """Retrieve weekly change of a given address."""
-
-    collection = _get_db_collection()
-    # todo
-    # get today time
-    # get last week time
-    # find block last week
-    # get balance of address in block last week
-    # get balance of address in block today
-    # calculate difference and percentage
-    pass

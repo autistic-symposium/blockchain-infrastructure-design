@@ -5,7 +5,7 @@
 import asyncio
 from fastapi import APIRouter
 
-from src.server.database import retrieve_balance, retrieve_top_balances, retrieve_holder_weekly_change
+from src.server.database import retrieve_balance, retrieve_top_balances
 
 router = APIRouter()
 
@@ -40,16 +40,3 @@ async def get_top_holders() -> dict:
         return {"result": result[0]}
     else:
         return {"error": "No holders found"}
-
-
-
-@router.get("/weekly/{address}")
-async def get_holder_weekly_change(address: str) -> dict:
-    """Get weekly change of a given address."""
-
-    futures = [retrieve_holder_weekly_change(address)]
-    result = await asyncio.gather(*futures)
-    if result:
-        return {"result": result}
-    else:
-        return {"error": "Wallet not found"}
