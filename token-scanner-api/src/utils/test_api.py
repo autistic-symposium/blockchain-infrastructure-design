@@ -4,21 +4,35 @@
 
 import src.utils.os_utils as os_utils
 
+def _craft_url(env_vars, endpoint):
+    """Craft the URL for the API."""
 
-def fetch_token_balance(ewallet):
+    host = env_vars['API_HOST_URL']
+    if host == '0.0.0.0':
+        host = 'http://localhost'
+    port = env_vars['API_HOST_PORT']
+
+    return f"{host}:{port}/{endpoint}"
+
+
+def fetch_token_balance(env_vars, wallet):
     """Test the fetch_token_balance function."""
     
-    endpoint = f"balance/{wallet}"
-    url = f'http://localhost:80/{endpoint}'
+    endpoint = f'balance/{wallet}'
+
+    url = _craft_url(env_vars, endpoint)
+    
     response = os_utils.send_get_request(url)
     os_utils.log_info(response)
 
 
-def fetch_top_token_holders(env_vars, top_number):
+def fetch_top_token_holders(env_vars):
     """Test the fetch_top_token_holders function."""
 
-    url = os_utils.format_url(f"{env_vars['API_HOST_URL']}:{env_vars['API_HOST_PORT']}", \
-                              "top")
+    endpoint = f'top'
+
+    url = _craft_url(env_vars, endpoint)
+    
     response = os_utils.send_get_request(url)
     os_utils.log_info(response)
 
@@ -26,7 +40,9 @@ def fetch_top_token_holders(env_vars, top_number):
 def fetch_change(env_vars, wallet):
     """Test the fetch_change function."""
 
-    url = os_utils.format_url(f"{env_vars['API_HOST_URL']}:{env_vars['API_HOST_PORT']}", \
-                              f"/weekly/{wallet}")
+    endpoint = f'weekly/{wallet}'
+
+    url = _craft_url(env_vars, endpoint)
+    
     response = os_utils.send_get_request(url)
     os_utils.log_info(response)

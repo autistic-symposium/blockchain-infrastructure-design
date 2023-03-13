@@ -74,7 +74,7 @@ def log_info(string) -> None:
 def log_debug(string) -> None:
     """Print STDOUT debug using the logging library."""
 
-    logging.debug('⚠️ %s', string)
+    logging.debug('🟡 %s', string)
 
 
 def open_json(filepath) -> dict:
