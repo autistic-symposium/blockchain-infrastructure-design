@@ -26,7 +26,7 @@ because of some of the dependencies in this code, we will be developing on a pyt
 ```
 virtualenv -p /usr/local/bin/python3.9 venv
 source venv/bin/activate
-pip3 install -r requirements.txt
+make install_dep
 ```
 
 
@@ -69,10 +69,8 @@ optional arguments:
   -p PROCESS  Process historical transfer events data. Example: indexer -p <json data file>
   -d DB       Populate db with processed event data. Example: indexer -d <json data file>
   -a          Run the event scanner api locally. Example: indexer -a
-  -c          Deploy event scanner to Vercel. Example: indexer -c
   -b BALANCE  Fetch token balance for a given wallet. Example: indexer -b <wallet address>
   -t TOP      Fetch top token holders. Example: indexer -t <number of holders>
-  -g CHANGE   Fetch weekly balance change for a given wallet. Example: indexer -g <wallet address>
 ```
 
 
@@ -80,18 +78,12 @@ optional arguments:
 
 ---
 
-### development
+
+### deploying in production
 
 <br>
 
-#### deploying in production
-
-we use vercel to deploy this app:
-
-```
-vercel login
-vercel .
-```
+follow [this instructions](https://mirror.xyz/steinkirch.eth/vSF18xcLyfXLIWwxjreRa3I_XskwgnjSc6pScegNJWI) to deploy the indexer to [vercel](https://vercel.com/) and [mongodb atlas](https://cloud.mongodb.com/v2/640ec23b5c46a564602b7c0e#/overview).
 
 <br>
 
