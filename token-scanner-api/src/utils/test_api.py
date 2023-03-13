@@ -2,7 +2,7 @@
 # utils/test_api.py
 # This class implements the tests for the API.
 
-import os_utils
+import src.utils.os_utils as os_utils
 
 
 def fetch_token_balance(env_vars, wallet):

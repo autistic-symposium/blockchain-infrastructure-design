@@ -30,5 +30,5 @@ def run_data_processing(filepath) -> None:
     balance_output_file = os_utils.create_result_file("balances")
     balance_output_filepath = os_utils.set_output(balance_output_file)
 
-    os_utils.log_info(f' Writing balances to {balance_output_filepath}')
+    os_utils.log_info(f'Writing balances to {balance_output_filepath}')
     os_utils.save_output(balance_output_filepath, balance_data)

@@ -7,10 +7,10 @@ import sys
 import json
 import logging
 import requests
-import urlparse
 from pathlib import Path
 from dotenv import load_dotenv
 from datetime import datetime
+from urllib.parse import urlparse
 
 
 def set_logging(log_level) -> None:
@@ -48,7 +48,7 @@ def load_config() -> dict:
         env_vars['SIZE_CHUNK_NEXT'] = os.getenv("SIZE_CHUNK_NEXT")           
         env_vars['OUTPUT_DIR'] = os.getenv("OUTPUT_DIR") 
         env_vars['TOKEN_DECIMALS'] = os.getenv("TOKEN_DECIMALS")
-        env_vars['MONGODB_URI'] = os.getenv("MONGODB_URI")
+        env_vars['MONGODB_URL'] = os.getenv("MONGODB_URI")
         env_vars['MONGODB_DB_NAME'] = os.getenv("MONGODB_DB_NAME") 
         env_vars['MONGODB_COLLECTION_NAME'] = os.getenv("MONGODB_COLLECTION_NAME")     
         env_vars['API_HOST_URL'] = os.getenv("API_HOST_URL")
@@ -155,7 +155,7 @@ def create_result_file(prefix) -> str:
 def send_post_request(url, headers=None, json=None) -> dict:
     """Send a request to a given URL"""
 
-    json = params or {}
+    json = json or {}
     headers = headers or {}
 
     try:
@@ -191,8 +191,8 @@ def send_rpc_request(url, method, params=None) -> dict:
     log_debug(f'Querying {url} with {data}')
 
     response = send_post_request(url, headers={'Content-Type': 'application/json'}, json=data)
-    if 'result' in response.json():
-        return response.json()['result']
+    if 'result' in response:
+        return response['result']
     else:
         log_error('Query failed: {}.'.format(response.json()['error']))
 
