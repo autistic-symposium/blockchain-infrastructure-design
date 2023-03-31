@@ -35,6 +35,7 @@
 
 * **[the arrow project](technologies/arrow_project.md)**
 * **[rlp enconding](technologies/rlp_enconding.md)**
+* **[python luigi](technologies/luigi.md)**
 
 
 <br>
