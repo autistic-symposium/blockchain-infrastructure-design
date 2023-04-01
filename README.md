@@ -33,7 +33,7 @@
 
 <br>
 
-* **[the arrow project](technologies/arrow_project.md)**
+* **[apache arrow](technologies/arrow_project.md)**
 * **[rlp enconding](technologies/rlp_enconding.md)**
 * **[spotify's luigi](technologies/luigi.md)**
 * **[google's or-tools](technologies/or_tools.md)**
