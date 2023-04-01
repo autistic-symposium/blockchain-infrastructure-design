@@ -35,7 +35,8 @@
 
 * **[the arrow project](technologies/arrow_project.md)**
 * **[rlp enconding](technologies/rlp_enconding.md)**
-* **[python luigi](technologies/luigi.md)**
+* **[spotify's luigi](technologies/luigi.md)**
+* **[google's or-tools](technologies/or_tools.md)**
 
 
 <br>
