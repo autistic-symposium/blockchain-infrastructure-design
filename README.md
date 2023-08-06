@@ -6,7 +6,14 @@
 
 ##### 🛠 here is a high-level system design chart for a possible blockchain intelligence data platform (all deployed in kubernetes):
 
-![blockchain intel](https://user-images.githubusercontent.com/1130416/224561453-274c5066-240d-4cc5-b63b-b4c57388a0e0.png)
+<br>
+
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/1130416/224561453-274c5066-240d-4cc5-b63b-b4c57388a0e0.png" width="80%" align="center" style="padding:1px;border:1px solid black;"/>
+
+
+
 
 <br>
 <br>
