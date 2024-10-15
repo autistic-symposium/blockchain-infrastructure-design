@@ -8,7 +8,7 @@ setup(
         'src.blockchains', 
         'src.server', 
         'src.utils']),
-    author="steinkirch.eth",
+    author="mia stein,
     install_requires=['python-dotenv'],
     entry_points={
         'console_scripts': ['indexer=src.main:run']

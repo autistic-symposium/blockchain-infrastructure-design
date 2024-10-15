@@ -8,7 +8,7 @@
 
 ![blockchain intel - mvp](https://user-images.githubusercontent.com/1130416/224561560-3fd67632-fba6-497c-b3b6-c5c5298701f0.png)
 
-##### 📚 more details can be found in my mirror post, **[quant #3: building a scalable event scanner for ethereum](https://mirror.xyz/steinkirch.eth/vSF18xcLyfXLIWwxjreRa3I_XskwgnjSc6pScegNJWI)**.
+##### 📚 more details can be found in my mirror post, **[quant #3: building a scalable event scanner for ethereum](https://mirror.xyz/go-outside.eth/vSF18xcLyfXLIWwxjreRa3I_XskwgnjSc6pScegNJWI)**.
 
 
 <br>
@@ -83,7 +83,7 @@ optional arguments:
 
 <br>
 
-follow [this instructions](https://mirror.xyz/steinkirch.eth/vSF18xcLyfXLIWwxjreRa3I_XskwgnjSc6pScegNJWI) to deploy the indexer to [vercel](https://vercel.com/) and [mongodb atlas](https://cloud.mongodb.com/v2/640ec23b5c46a564602b7c0e#/overview).
+follow [this instructions](https://mirror.xyz/go-outside.eth/vSF18xcLyfXLIWwxjreRa3I_XskwgnjSc6pScegNJWI) to deploy the indexer to [vercel](https://vercel.com/) and [mongodb atlas](https://cloud.mongodb.com/v2/640ec23b5c46a564602b7c0e#/overview).
 
 <br>
 
