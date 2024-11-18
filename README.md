@@ -1,4 +1,4 @@
-## ⛓🛠 blockchain infrastructure && data engineering
+## blockchain infrastructure 
 
 <br>
 
@@ -7,7 +7,7 @@
 
 <br>
 
-##### 👉 this repository holds some of my blockchain infrastructure MVPs (such as scalable event scanners and infrastructure setups for on-chain analysis and machine learning models training)
+### chapters
 
 <br>
 
@@ -24,21 +24,17 @@
     - discussion, design, and implementation route of a protocol for management and bartering of game (NFT) assets
 
 * **research notes**:
-    - **[apache arrow](technologies/arrow_project.md)**
     - **[rlp encoding](technologies/rlp_enconding.md)**
-    - **[spotify's luigi](technologies/luigi.md)**
-    - **[google's or-tools](technologies/or_tools.md)**
-
 
 <br>
 
 ---
 
-### external resources
+### cool resources
 
 <br>
 
-* **[urani trade experiments (on solana)](https://github.com/urani-trade)**:
+* **[urani.trade's experiments on solana](https://github.com/urani-trade)**:
   - a batching orderbook on mongodb: **[orderbook-poc-ts](https://github.com/urani-trade/orderbook-poc-ts)**
   - a swap protocol for order intents: **[urani-swap-ts](https://github.com/urani-trade/urani-swap-ts)**
   - a mev solver: **[solana-mev-agent-py](https://github.com/urani-trade/solana-mev-agent-py)**
