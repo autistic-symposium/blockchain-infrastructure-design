@@ -1,4 +1,4 @@
-## blockchain infrastructure 
+## blockchain data engineering toolkit 
 
 <br>
 
@@ -43,5 +43,6 @@
 * **[autistic symposium's backend-and-orchestration-toolkit](https://github.com/autistic-symposium/backend-and-orchestration-toolkit)**
 * **[google biquery article on blockchain public datasets](https://cloud.google.com/blog/products/data-analytics/introducing-six-new-cryptocurrencies-in-bigquery-public-datasets-and-how-to-analyze-them)**
 * **[paradigm's data portal](https://data.paradigm.xyz/)**
+* **[crypto data engineering guide, by a. hong (2025)](https://read.cryptodatabytes.com/p/2025-annual-guide-crypto-data-engineering)**
 
   
