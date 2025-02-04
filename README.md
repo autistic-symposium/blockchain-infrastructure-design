@@ -34,6 +34,10 @@
 
 <br>
 
+* **[crypto data engineering guide, by a. hong (2025)](https://read.cryptodatabytes.com/p/2025-annual-guide-crypto-data-engineering)**
+* **[google biquery article on blockchain public datasets](https://cloud.google.com/blog/products/data-analytics/introducing-six-new-cryptocurrencies-in-bigquery-public-datasets-and-how-to-analyze-them)**
+* **[paradigm's data portal](https://data.paradigm.xyz/)**
+* **[indexed podcast (trendy metrics; chart crimes), by d. sui et al.](https://www.youtube.com/@indexed_pod)**
 * **[urani.trade's experiments on solana](https://github.com/urani-trade)**:
   - a batching orderbook on mongodb: **[orderbook-poc-ts](https://github.com/urani-trade/orderbook-poc-ts)**
   - a swap protocol for order intents: **[urani-swap-ts](https://github.com/urani-trade/urani-swap-ts)**
@@ -41,8 +45,5 @@
   - a graph visualization of order fulfillment: **[urani-arena-graph-ts](https://github.com/urani-trade/urani-arena-graph-ts)**
 * **[autistic symposium's ml-ai-agents-py](https://github.com/autistic-symposium/ml-ai-agents-py)**
 * **[autistic symposium's backend-and-orchestration-toolkit](https://github.com/autistic-symposium/backend-and-orchestration-toolkit)**
-* **[google biquery article on blockchain public datasets](https://cloud.google.com/blog/products/data-analytics/introducing-six-new-cryptocurrencies-in-bigquery-public-datasets-and-how-to-analyze-them)**
-* **[paradigm's data portal](https://data.paradigm.xyz/)**
-* **[crypto data engineering guide, by a. hong (2025)](https://read.cryptodatabytes.com/p/2025-annual-guide-crypto-data-engineering)**
 
-  
+
